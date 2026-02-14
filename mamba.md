@@ -27,6 +27,7 @@ $e^{-At}\dot{h}(t) - Ae^{-At}h(t) = e^{-At}Bx(t)$ </center>
 $` F(t)=e^{-At}h(t)=F(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau=h(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau `$ (4) </center>
 
 公式(4)两边同时乘以 $` e^{At} `$，可得<center>
+
 $` h(t)=e^{At}h(0)+e^{At}\int_0^te^{-A\tau}Bx(\tau)d\tau `$ (5) </center>
 
 考虑离散化形式，令 $` t=t_{k+1} `$<center>
@@ -35,10 +36,11 @@ $` h(t_{k+1})=e^{At_{k+1}}h(0)+e^{At_{k+1}}\int_0^{t_{k+1}}e^{-A\tau}Bx(\tau)d\t
 
 设 $` t_{k+1}=t_k+\Delta `$, 则有
 
-$`
-h(t_{k+1})=e^{A(t_k+\Delta)}h(0)+e^{A(t_k+\Delta)}[\int_0^{t_k}+\int_{t_k}^{t_{k+1}}] \\
-h(t_{k+1})=e^{At_k}*e^{A\Delta}*h(0)+e^{At_k}*e^{A\Delta}*[\int_0^{t_k}+\int_{t_k}^{t_{k+1}}] \\
-h(t_{k+1})=e^{A\Delta}[e^{At_k}*h(0)+e^{At_k}*\int_0^{t_k}]+e^{At_{k+1}}\int_{t_k}^{t_{k+1}}  `$ (7)
+$` h(t_{k+1})=e^{A(t_k+\Delta)}h(0)+e^{A(t_k+\Delta)}[\int_0^{t_k}+\int_{t_k}^{t_{k+1}}] `$
+
+$` h(t_{k+1})=e^{At_k}*e^{A\Delta}*h(0)+e^{At_k}*e^{A\Delta}*[\int_0^{t_k}+\int_{t_k}^{t_{k+1}}] `$
+
+$` h(t_{k+1})=e^{A\Delta}[e^{At_k}*h(0)+e^{At_k}*\int_0^{t_k}]+e^{At_{k+1}}\int_{t_k}^{t_{k+1}}  `$ (7)
 
 公式(7)中括号中的部分恰好等于 $` h(t_k) `$ ,化简可得<center>
 
@@ -46,10 +48,9 @@ $` h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}\int_{t_k}^{t_{k+1}}e^{-A\tau}Bx(\ta
 
 离散场景中假设 $` \Delta `$ 足够小，我们认为 $` x(\tau) `$ 等价于 $` x(t_{k+1}) `$, 公式(8)可进一步化简：
 
-$` 
-h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}x(t_{k+1})\int_{t_k}^{t_{k+1}}e^{-A\tau}Bd\tau \\
-h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}x(t_{k+1})[-\frac{1}{A}(e^{-At_{k+1}}-e^{-At_k})] \\
-h(t_{k+1})=e^{A\Delta}h(t_k)-A^{-1}[1-e^{A\Delta}]Bx(t_{k+1}) `$ (9)
+$` h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}x(t_{k+1})\int_{t_k}^{t_{k+1}}e^{-A\tau}Bd\tau `$
+$` h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}x(t_{k+1})[-\frac{1}{A}(e^{-At_{k+1}}-e^{-At_k})] `$
+$` h(t_{k+1})=e^{A\Delta}h(t_k)-A^{-1}[1-e^{A\Delta}]Bx(t_{k+1}) `$ (9)
 
 令公式(9)中 $` \bar{A}=e^{A\Delta}, \bar{B}=A^{-1}[e^{A\Delta}-1]B `$, 则有<center>
 
@@ -70,11 +71,11 @@ y(t_2)=Ch(t_2)=C(\bar{A}h(t_1)+\bar{B}x(t_2))=C\bar{A}(\bar{A}h(t_0)+\bar{B}x(t_
 
 因此<center>
 
-$` y_2 = [C\bar{A}^2\bar{B}, C\bar{A}\bar{B}, C\bar{B}][x_0, x_1, x_2]^T `$ (9)</center>
+$` y_2 = [C\bar{A}^2\bar{B}, C\bar{A}\bar{B}, C\bar{B}][x_0, x_1, x_2]^T `$ (10)</center>
 
 当推广到第 $` k `$ 次项 $` y_k `$ 时，令 $` K=[C\bar{A}^k\bar{B}, C\bar{A}^{k-1}\bar{B}, ...], x=[x_0, x_1, ...] `$ , 则<center>
 
-$` y_k= K * x `$ (10)</center>
+$` y_k= K * x `$ (11)</center>
 
 以上为论文公式 (3a), (3b)
 
