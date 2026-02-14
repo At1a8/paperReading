@@ -49,7 +49,9 @@ $` h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}\int_{t_k}^{t_{k+1}}e^{-A\tau}Bx(\ta
 离散场景中假设 $` \Delta `$ 足够小，我们认为 $` x(\tau) `$ 等价于 $` x(t_{k+1}) `$, 公式(8)可进一步化简：
 
 $` h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}x(t_{k+1})\int_{t_k}^{t_{k+1}}e^{-A\tau}Bd\tau `$
+
 $` h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}x(t_{k+1})[-\frac{1}{A}(e^{-At_{k+1}}-e^{-At_k})] `$
+
 $` h(t_{k+1})=e^{A\Delta}h(t_k)-A^{-1}[1-e^{A\Delta}]Bx(t_{k+1}) `$ (9)
 
 令公式(9)中 $` \bar{A}=e^{A\Delta}, \bar{B}=A^{-1}[e^{A\Delta}-1]B `$, 则有<center>
@@ -64,10 +66,11 @@ $` y(t_{k+1})=Ch(t_{k+1}) `$</center>
 
 SSM 假定 $` h(t_0)=\bar{B}x(t_0) `$ , 那么当 $` k=0,1,2 `$ 时刻时，
 
-$`
-y(t_0)=Ch(t_0)=C\bar{B}x(t_0) \\
-y(t_1)=Ch(t_1)=C(\bar{A}h(t_0)+\bar{B}x(t_1))=C\bar{A}\bar{B}x(t_0)+C\bar{B}x(t_1) \\
-y(t_2)=Ch(t_2)=C(\bar{A}h(t_1)+\bar{B}x(t_2))=C\bar{A}(\bar{A}h(t_0)+\bar{B}x(t_1))+C\bar{B}x(t_2)=C\bar{A}^2\bar{B}x(t_0)+C\bar{A}\bar{B}x(t_1)+C\bar{B}x(t_2) `$
+$` y(t_0)=Ch(t_0)=C\bar{B}x(t_0) `$
+
+$` y(t_1)=Ch(t_1)=C(\bar{A}h(t_0)+\bar{B}x(t_1))=C\bar{A}\bar{B}x(t_0)+C\bar{B}x(t_1) `$
+
+$` y(t_2)=Ch(t_2)=C(\bar{A}h(t_1)+\bar{B}x(t_2))=C\bar{A}(\bar{A}h(t_0)+\bar{B}x(t_1))+C\bar{B}x(t_2)=C\bar{A}^2\bar{B}x(t_0)+C\bar{A}\bar{B}x(t_1)+C\bar{B}x(t_2) `$
 
 因此<center>
 
