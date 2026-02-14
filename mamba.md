@@ -24,14 +24,14 @@ $e^{-At}\dot{h}(t) - Ae^{-At}h(t) = e^{-At}Bx(t)$ </center>
 
 易知: $F(t) = F(\lambda) + \int_\lambda^t\dot{F}(\tau)d\tau$，设 $\lambda = 0 $, 则有<center>
 
-$ F(t)=e^{-At}h(t)=F(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau=h(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau $ (4)</center>
+$ F(t)=e^{-At}h(t)=F(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau=h(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau $ (4) </center>
 
 公式(4)两边同时乘以 $ e^{At} $，可得<center>
-$ h(t)=e^{At}h(0)+e^{At}\int_0^te^{-A\tau}Bx(\tau)d\tau$ (5)</center>
+$ h(t)=e^{At}h(0)+e^{At}\int_0^te^{-A\tau}Bx(\tau)d\tau$ (5) </center>
 
 考虑离散化形式，令 $ t=t_{k+1}$<center>
 
-$ h(t_{k+1})=e^{At_{k+1}}h(0)+e^{At_{k+1}}\int_0^{t_{k+1}}e^{-A\tau}Bx(\tau)d\tau $ (6)</center>
+$ h(t_{k+1})=e^{At_{k+1}}h(0)+e^{At_{k+1}}\int_0^{t_{k+1}}e^{-A\tau}Bx(\tau)d\tau $ (6) </center>
 
 设 $ t_{k+1}=t_k+\Delta $, 则有
 
@@ -40,7 +40,7 @@ h(t_{k+1})=e^{A(t_k+\Delta)}h(0)+e^{A(t_k+\Delta)}[\int_0^{t_k}+\int_{t_k}^{t_{k
 h(t_{k+1})=e^{At_k}*e^{A\Delta}*h(0)+e^{At_k}*e^{A\Delta}*[\int_0^{t_k}+\int_{t_k}^{t_{k+1}}] \\
 h(t_{k+1})=e^{A\Delta}[e^{At_k}*h(0)+e^{At_k}*\int_0^{t_k}]+e^{At_{k+1}}\int_{t_k}^{t_{k+1}}  $ (7)
 
-公式(7)中括号中的部分恰好等于 $ h(t_k)$ ,化简可得<center>
+公式(7)中括号中的部分恰好等于 $ h(t_k) $ ,化简可得<center>
 
 $ h(t_{k+1})=e^{A\Delta}h(t_k)+e^{At_{k+1}}\int_{t_k}^{t_{k+1}}e^{-A\tau}Bx(\tau)d\tau $ (8)</center>
 
