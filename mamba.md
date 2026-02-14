@@ -24,7 +24,7 @@ $e^{-At}\dot{h}(t) - Ae^{-At}h(t) = e^{-At}Bx(t)$ </center>
 
 易知: $F(t) = F(\lambda) + \int_\lambda^t\dot{F}(\tau)d\tau$，设 $\lambda = 0 $, 则有<center>
 
-$ F(t)=e^{-At}h(t)=F(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau=h(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau $ (4) </center>
+$` F(t)=e^{-At}h(t)=F(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau=h(0)+\int_0^te^{-A\tau}Bx(\tau)d\tau `$ (4) </center>
 
 公式(4)两边同时乘以 $ e^{At} $，可得<center>
 $ h(t)=e^{At}h(0)+e^{At}\int_0^te^{-A\tau}Bx(\tau)d\tau$ (5) </center>
