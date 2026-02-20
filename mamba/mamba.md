@@ -1,6 +1,8 @@
 # Mamba: Linear-Time Sequence Modeling with Selective State Spaces
 视频讲解：https://www.bilibili.com/video/BV1JCrVYjEPN/?spm_id_from=333.337.search-card.all.click&vd_source=438c274850337b47a0be54ae5ef6d6ca 
 
+知乎：https://zhuanlan.zhihu.com/p/680846351
+
 论文：https://arxiv.org/pdf/2312.00752
 
 ## 公式推导
@@ -82,3 +84,31 @@ $` y_k= K * x `$ (11)</center>
 
 以上为论文公式 (3a), (3b)
 
+## 结构和维度
+
+结构化 SSM 之所以被命名为结构化 SSM，是因为高效计算 SSM 还需要对 A 矩阵施加结构（结构化即给矩阵 A 设定一个特定的格式或模式，使得它更易于处理和优化），最常用的结构形式是对角线结构。
+
+在此情况下， $` A \in \mathbb{R}^{N * N}, B \in \mathbb{R}^{N * 1}, C \in \mathbb{R}^{1 * N} `$
+ 都可以用N个数字来表示。若输入大小为 $` x \in \mathbb{R}^{B * L * D} `$ ，其中B为batch size，L为输入长度，D为输入通道数，将SSM独立应用于每个通道，每个输入的总隐藏状态维数为 $` D * N `$ ，在序列长度上它需要 $` O(BLDN) `$ 的时间和内存，这是基本效率瓶颈的来源。
+
+## SSM 架构
+SSM 是独立的序列变换，可被纳入端到端神经网络架构。(我们有时也称 SSM 架构为 SSNN，它与 SSM 层的关系就像 CNN 与线性卷积层的关系）。下面将介绍一些最著名的 SSM 架构，其中许多也将作为主要 baseline。
+
+- Linear attention: 线性注意力，它是自注意力的近似，涉及一个递归，可以看作是一个退化的线性 SSM。
+![Linear attention](./Linear_attention.png)
+- H3: 它在S4的基础上进行了扩展；可以被看作是一种由两个门控连接夹着一个 SSM 的架构（如下图）。H3还在主SSM层之前插入了一个标准的局部卷积，将这部分定义为一个shift-SSM。
+![H3](./H3.png)
+- Hyena: 使用与 H3 相同的架构，但用 MLP 参数化全局卷积取代了 S4 层。
+- RetNet: 在架构中增加了一个额外的门，并使用更简单的 SSM，允许另一种可并行计算的路径，使用多头注意力（MHA）的变体来代替卷积。
+- RWKV: 是最近基于另一种线性注意近似（attention-free Transformer）设计的用于语言建模的 RNN。它的主要 "WKV "机制涉及 LTI 递归，可视为两个 SSM 的比值。
+- 其他的方法还有S5、QRNN、SRU等。
+
+
+## 通过选择改进 SSM
+将选择机制纳入模型的一种方法是，让影响序列交互的参数（如 RNN 的递归动力或 CNN 的卷积核）取决于输入。
+![fig2](./fig2.png)
+主要做的改变就是将 $` (\Delta, A, B, C) `$ 从固定的参数变为输入的函数，同时改变张量形状。使用线性层进行，其中
+
+$` S_B(x) = Linear_N(x), S_C(x) = Linear_N(x), S_\Delta(x) = Broadcast_D(Linear_1(x)), \tau_\Delta=softplus `$
+
+参数现在有了一个长度维度L，意味着模型从时不变变成了时可变。这就失去了与卷积 (论文公式3) 的等价性，对效率产生了影响。
